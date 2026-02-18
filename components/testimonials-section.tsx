@@ -82,7 +82,7 @@ export function TestimonialsSection() {
     <section
       ref={sectionRef}
       className="min-h-screen py-20 px-4 md:px-8 lg:px-16 opacity-0 transition-opacity duration-500"
-      style={{ backgroundColor: "#d9d9d6" }}
+      style={{ backgroundColor: "#262629" }}
     >
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-center mb-16">
@@ -102,25 +102,25 @@ export function TestimonialsSection() {
             <div
               key={index}
               className="p-6 border-2"
-              style={{ backgroundColor: "#d9d9d6", borderColor: "#262629" }}
+              style={{ backgroundColor: "#262629", borderColor: "#d9d9d6" }}
             >
               <div className="flex items-center gap-3 mb-4">
                 <div
                   className="w-10 h-10 rounded-full flex items-center justify-center"
-                  style={{ backgroundColor: "#262629" }}
+                  style={{ backgroundColor: "#d9d9d6" }}
                 >
-                  <User className="w-6 h-6" style={{ color: "#d9d9d6" }} />
+                  <User className="w-6 h-6" style={{ color: "#262629" }} />
                 </div>
                 <span
                   className="font-mono text-sm font-bold uppercase"
-                  style={{ color: "#262629" }}
+                  style={{ color: "#d9d9d6" }}
                 >
                   {testimonial.username}
                 </span>
               </div>
               <p
                 className="font-mono text-xs md:text-sm leading-relaxed"
-                style={{ color: "#262629" }}
+                style={{ color: "#d9d9d6" }}
               >
                 {testimonial.quote}
               </p>

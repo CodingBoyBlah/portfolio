@@ -6,9 +6,21 @@ import { TestimonialsSection } from "@/components/testimonials-section";
 import { InterruptSection } from "@/components/interrupt-section";
 import { ProjectsSection } from "@/components/projects-section";
 import { BlogsSection } from "@/components/blogs-section";
-import { ContactSection } from "@/components/contact-section";
+import ContactSection from "@/components/contact-section";
 import GradualBlur from "@/components/GradualBlur";
 import Cursor from "@/components/cursor";
+import Dock from "@/components/Dock";
+import { Discord } from "@/components/discord";
+import { GitHub } from "@/components/github";
+
+const items = [
+  { icon: <Discord />, label: "Home", onClick: () => alert("Home!") },
+  {
+    icon: <GitHub />,
+    label: "Archive",
+    onClick: () => alert("Archive!"),
+  },
+];
 
 export default function PortfolioPage() {
   useEffect(() => {
@@ -41,11 +53,11 @@ export default function PortfolioPage() {
   return (
     <main className="scroll-container">
       <HeroSection />
+      <ProjectsSection />
       <TestimonialsSection />
       <InterruptSection />
-      <ProjectsSection />
       <BlogsSection />
-      {/*<ContactSection />*/}
+
       <GradualBlur
         target="page"
         position="bottom"

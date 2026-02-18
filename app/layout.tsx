@@ -50,7 +50,7 @@ export default function RootLayout({
       <body className="font-mono antialiased">
         {children}
         <Analytics />
-      {/*<footer className="bg-[#d9d9d6] text-[#262629] flex justify-center items-center gap-10 p-10">
+        {/*<footer className="bg-[#d9d9d6] text-[#262629] flex justify-center items-center gap-10 p-10">
           <Link
             href="https://github.com/codingboyblah/"
             className="hover:scale-110 transition-all duration-300"

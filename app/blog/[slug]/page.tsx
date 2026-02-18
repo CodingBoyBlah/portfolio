@@ -71,8 +71,50 @@ export default async function BlogPage({ params }: BlogPageProps) {
   }
 
   const fileContents = fs.readFileSync(filePath, "utf8");
-  const { data, content } = matter(fileContents);
-  const htmlContent = await marked(content);
+  const { data, content: rawContent } = matter(fileContents);
+
+  // Replace markdown image links with embedded data URIs when the image file
+  // exists inside the project (same folder as the markdown, content/blogs,
+  // content/blogimages, or public). This makes attaching images to a post as
+  // simple as putting the image next to the .md file (or in content/blogimages)
+  // and referencing it with a relative path like `![alt](ogpfp.png)`.
+  const processedContent = rawContent.replace(
+    /!\[([^\]]*)\]\(([^)]+)\)/g,
+    (match, alt, src) => {
+      try {
+        // Resolve candidate filesystem paths in order of likelihood
+        const candidatePaths = [
+          path.join(path.dirname(filePath), src), // same directory as the markdown file
+          path.join(process.cwd(), "content", "blogs", src), // content/blogs/<src>
+          path.join(process.cwd(), "content", "blogimages", src), // content/blogimages/<src>
+          path.join(process.cwd(), "public", src.replace(/^\//, "")), // public/<src>
+        ];
+
+        for (const p of candidatePaths) {
+          if (fs.existsSync(p) && fs.statSync(p).isFile()) {
+            const ext = (path.extname(p) || ".png")
+              .replace(".", "")
+              .toLowerCase();
+            const mime =
+              ext === "svg"
+                ? "image/svg+xml"
+                : `image/${ext === "jpg" ? "jpeg" : ext}`;
+            const buffer = fs.readFileSync(p);
+            const base64 = buffer.toString("base64");
+            const dataUri = `data:${mime};base64,${base64}`;
+            // Return a markdown image where the src is the data URI
+            return `![${alt}](${dataUri})`;
+          }
+        }
+      } catch (err) {
+        console.error("Error embedding image for markdown:", src, err);
+      }
+      // If we couldn't resolve/embed the image, leave the original markdown unchanged
+      return match;
+    },
+  );
+
+  const htmlContent = await marked(processedContent);
 
   const blogData = {
     title: data.title || slug,
