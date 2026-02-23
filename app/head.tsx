@@ -17,7 +17,7 @@ export default function Head(): React.ReactNode {
       <meta name="generator" content="CodingBoyBlah" />
       <meta name="robots" content="index, follow" />
 
-      <link rel="canonical" href={canonical} />
+      <link rel="canonical" href="https://boyblah.dev" />
 
       <link rel="icon" href="/icon.svg" />
       <link
