@@ -67,7 +67,7 @@ export function BlogsSection() {
             [...blogs].reverse().map((blog, index) => (
               <Link key={index} href={`/blog/${blog.slug}`}>
                 <div
-                  className="p-8 md:p-12 border-2 hover:scale-101 transform transition-transform duration-300"
+                  className="p-8 md:p-12 border-2 hover:scale-101 transform transition-transform duration-300 hoverable"
                   style={{ backgroundColor: "#262629", borderColor: "#d9d9d6" }}
                 >
                   <h3

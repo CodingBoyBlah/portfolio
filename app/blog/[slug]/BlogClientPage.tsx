@@ -75,7 +75,7 @@ export default function BlogClientPage({ blogData }: BlogClientPageProps) {
 
         @keyframes pageEnter {
           from {
-            opacity: 0;
+            opacity: 1;
             transform: translateY(12px);
           }
           to {

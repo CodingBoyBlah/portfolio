@@ -66,7 +66,7 @@ export function ProjectsSection() {
           {projects.map((project, index) => (
             <div
               key={index}
-              className="p-8 md:p-12 border-2 hover:scale-101 transform transition-transform duration-300"
+              className="p-8 md:p-12 border-2 hover:scale-101 transform transition-transform duration-300 hoverable"
               style={{ backgroundColor: "#d9d9d6", borderColor: "#262629" }}
             >
               <Link href={project.url}>

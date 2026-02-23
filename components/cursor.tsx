@@ -13,6 +13,8 @@ interface MouseMoveEvent {
 
 export default function Cursor() {
   const [isPressed, setIsPressed] = useState<boolean>(false);
+  const [isHovering, setIsHovering] = useState<boolean>(false);
+  const isHoveringRef = useRef<boolean>(false);
   const cursor = useRef<HTMLDivElement>(null);
   const cursorSize = isPressed ? 21 : 15;
   const [isVisible, setIsVisible] = useState(false);
@@ -40,6 +42,15 @@ export default function Cursor() {
     }
   };
 
+  const checkHoverable = (target: EventTarget | null) => {
+    let el = target as HTMLElement | null;
+    while (el && el !== document.documentElement) {
+      if (el.classList && el.classList.contains("hoverable")) return true;
+      el = el.parentElement;
+    }
+    return false;
+  };
+
   const manageMouseMove = (e: MouseMoveEvent) => {
     const isFinePointer = window.matchMedia("(pointer: fine)").matches;
     if (!isFinePointer) {
@@ -48,13 +59,28 @@ export default function Cursor() {
     }
     if (!isVisible) setIsVisible(true);
 
+    // detect hovered ".hoverable" element by walking up the DOM from the event target
+    const foundHoverable = checkHoverable((e as unknown as MouseEvent).target);
+    if (foundHoverable !== isHoveringRef.current) {
+      isHoveringRef.current = foundHoverable;
+      setIsHovering(foundHoverable);
+    }
+
     const { clientX, clientY } = e;
-    mouse.x.set(clientX - cursorSize / 2);
-    mouse.y.set(clientY - cursorSize / 2);
+    // compute offset based on current visual size (expanded when hovering)
+    const width = isHoveringRef.current ? 96 : cursorSize;
+    const height = isHoveringRef.current ? 48 : cursorSize;
+
+    mouse.x.set(clientX - width / 2);
+    mouse.y.set(clientY - height / 2);
   };
 
   const manageMouseLeave = () => {
     setIsVisible(false);
+    if (isHoveringRef.current) {
+      isHoveringRef.current = false;
+      setIsHovering(false);
+    }
   };
 
   const handleMouseDown = (e: MouseEvent) => {
@@ -92,6 +118,7 @@ export default function Cursor() {
       window.removeEventListener("mousedown", handleMouseDown);
       window.removeEventListener("mouseup", handleMouseUp);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const template = ({
@@ -106,6 +133,9 @@ export default function Cursor() {
     return `rotate(${rotate}deg) scaleX(${scaleX}) scaleY(${scaleY})`;
   };
 
+  const visualWidth = isHovering ? 96 : cursorSize;
+  const visualHeight = isHovering ? 48 : cursorSize;
+
   return (
     <div className={styles.cursorContainer}>
       <motion.div
@@ -113,16 +143,44 @@ export default function Cursor() {
         style={{
           left: smoothMouse.x,
           top: smoothMouse.y,
-          scaleX: mouse.x,
-          scaleY: mouse.y,
+          // borderRadius is animated via inline style (number => px)
+          borderRadius: isHovering ? 999 : "50%",
+          pointerEvents: "none",
+          // ensure blending is applied at the element level so the cursor inverts underlying colors
+
+          mixBlendMode: "difference",
         }}
         animate={{
-          width: cursorSize,
-          height: cursorSize,
+          width: visualWidth,
+          height: visualHeight,
+          // animate background color inline so the pill-to-dot transition blends correctly
+          backgroundColor: isHovering ? "#ffffff" : "#ffffff",
         }}
+        transition={{ type: "spring", stiffness: 1000, damping: 30 }}
         className={`${styles.cursor} ${isVisible ? styles.visible : styles.hidden}`}
         ref={cursor}
-      ></motion.div>
+      >
+        <span
+          style={{
+            position: "absolute",
+            left: "50%",
+            top: "50%",
+            transform: "translate(-50%, -50%)",
+            color: "white",
+            fontSize: 14,
+            fontWeight: 500,
+            opacity: isHovering ? 1 : 0,
+            transition:
+              "opacity 0.18s ease-in-out, transform 0.18s ease-in-out",
+            pointerEvents: "none",
+            userSelect: "none",
+            letterSpacing: 0.2,
+            mixBlendMode: "difference",
+          }}
+        >
+          View
+        </span>
+      </motion.div>
     </div>
   );
 }
