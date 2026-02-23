@@ -18,9 +18,32 @@ const bebasNeue = Bebas_Neue({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://boyblah.dev"),
   title: "CodingBoyBlah",
   description: "The most best developer",
   generator: "CodingBoyBlah",
+  openGraph: {
+    title: "CodingBoyBlah",
+    description: "The most best developer",
+    url: "https://boyblah.dev",
+    siteName: "CodingBoyBlah",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "CodingBoyBlah — The most best developer",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "CodingBoyBlah",
+    description: "The most best developer",
+    images: ["/twitter-image.png"],
+    creator: "@CodingBoyBlah",
+  },
   icons: {
     icon: [
       {
