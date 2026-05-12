@@ -72,7 +72,7 @@ export function ProjectsSection() {
           {projects.map((project, index) => (
             <motion.div
               key={index}
-              className="group hoverable border-2 p-0"
+              className="group hoverable-dark border-2 p-0"
               style={{ backgroundColor: "#d9d9d6", borderColor: "#262629" }}
               initial={
                 prefersReducedMotion ? undefined : { opacity: 0, y: 24, filter: "blur(6px)" }

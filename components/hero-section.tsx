@@ -1,7 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from "motion/react";
 
 export function HeroSection() {
   const prefersReducedMotion = useReducedMotion();
@@ -10,7 +15,7 @@ export function HeroSection() {
   const titleY = useTransform(scrollY, [0, 800], [0, -40]);
 
   return (
-    <section className="relative min-h-screen overflow-hidden bg-[#262629]">
+    <section className="relative h-full overflow-hidden bg-[#262629]">
       {/* BACKGROUND PATTERN */}
       <motion.div
         className="absolute inset-0 scale-90 flex items-center justify-center pointer-events-none"
@@ -21,7 +26,7 @@ export function HeroSection() {
           alt=""
           width={1642}
           height={870}
-          className="w-full h-auto object-contain"
+          className="w-full h-full object-contain"
           priority
         />
       </motion.div>
@@ -31,10 +36,14 @@ export function HeroSection() {
           className="w-full max-w-[1100px]  scale-65"
           style={{ mixBlendMode: "difference" }}
           initial={
-            prefersReducedMotion ? undefined : { opacity: 0, y: 32, filter: "blur(8px)" }
+            prefersReducedMotion
+              ? undefined
+              : { opacity: 0, y: 32, filter: "blur(8px)" }
           }
           animate={
-            prefersReducedMotion ? undefined : { opacity: 1, y: 0, filter: "blur(0px)" }
+            prefersReducedMotion
+              ? undefined
+              : { opacity: 1, y: 0, filter: "blur(0px)" }
           }
           transition={
             prefersReducedMotion

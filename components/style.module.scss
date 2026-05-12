@@ -3,7 +3,6 @@
     inset: 0;
     pointer-events: none;
     z-index: 9999;
-    mix-blend-mode: difference;
 }
 
 .cursor {
@@ -20,14 +19,11 @@
         width 0.12s ease,
         height 0.12s ease,
         border-radius 0.12s ease,
-        background-color 0.12s ease,
         transform 0.12s ease;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-
-    mix-blend-mode: difference;
 
     z-index: 9999;
 }
@@ -41,7 +37,7 @@
 }
 
 .hovering {
-    color: #ffffff;
+    background-color: #262629;
     border-radius: 999px;
     width: 96px;
     height: 40px;
@@ -50,10 +46,10 @@
     justify-content: center;
 }
 
-.label {
+.hoveringLabel {
     font-size: 14px;
     line-height: 1;
-    color: #ffffff;
+    color: #d9d9d6;
     pointer-events: none;
     user-select: none;
     font-family:
@@ -68,7 +64,8 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-.hoverable {
+.hoverable-dark,
+.hoverable-light {
     cursor: none;
 }
 

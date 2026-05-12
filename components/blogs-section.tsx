@@ -74,7 +74,7 @@ export function BlogsSection() {
             [...blogs].reverse().map((blog, index) => (
               <Link key={index} href={`/blog/${blog.slug}`}>
                 <motion.div
-                  className="group hoverable border-2 p-0"
+                  className="group hoverable-light border-2 p-0"
                   style={{ backgroundColor: "#262629", borderColor: "#d9d9d6" }}
                   initial={
                     prefersReducedMotion ? undefined : { opacity: 0, y: 20, filter: "blur(5px)" }

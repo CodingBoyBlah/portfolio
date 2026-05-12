@@ -14,6 +14,7 @@ interface MouseMoveEvent {
 export default function Cursor() {
   const [isPressed, setIsPressed] = useState<boolean>(false);
   const [isHovering, setIsHovering] = useState<boolean>(false);
+  const [hoverVariant, setHoverVariant] = useState<"dark" | "light" | null>(null);
   const isHoveringRef = useRef<boolean>(false);
   const pointerRef = useRef({ x: 0, y: 0 });
   const cursor = useRef<HTMLDivElement>(null);
@@ -30,6 +31,7 @@ export default function Cursor() {
     stiffness: 300,
     mass: 0.5,
   };
+
   const smoothMouse = {
     x: useSpring(mouse.x, smoothOptions),
     y: useSpring(mouse.y, smoothOptions),
@@ -46,10 +48,11 @@ export default function Cursor() {
   const checkHoverable = (target: EventTarget | null) => {
     let el = target as HTMLElement | null;
     while (el && el !== document.documentElement) {
-      if (el.classList && el.classList.contains("hoverable")) return true;
+      if (el.classList && el.classList.contains("hoverable-dark")) return "dark";
+      if (el.classList && el.classList.contains("hoverable-light")) return "light";
       el = el.parentElement;
     }
-    return false;
+    return null;
   };
 
   const manageMouseMove = (e: MouseMoveEvent) => {
@@ -61,9 +64,13 @@ export default function Cursor() {
     if (!isVisible) setIsVisible(true);
 
     const foundHoverable = checkHoverable((e as unknown as MouseEvent).target);
-    if (foundHoverable !== isHoveringRef.current) {
-      isHoveringRef.current = foundHoverable;
-      setIsHovering(foundHoverable);
+    const hovering = Boolean(foundHoverable);
+    if (hovering !== isHoveringRef.current) {
+      isHoveringRef.current = hovering;
+      setIsHovering(hovering);
+    }
+    if (foundHoverable !== hoverVariant) {
+      setHoverVariant(foundHoverable);
     }
 
     const { clientX, clientY } = e;
@@ -81,6 +88,7 @@ export default function Cursor() {
       isHoveringRef.current = false;
       setIsHovering(false);
     }
+    if (hoverVariant !== null) setHoverVariant(null);
   };
 
   const syncHoverStateWithPointer = () => {
@@ -89,10 +97,14 @@ export default function Cursor() {
       pointerRef.current.y,
     );
     const foundHoverable = checkHoverable(elementAtPointer);
+    const hovering = Boolean(foundHoverable);
 
-    if (foundHoverable !== isHoveringRef.current) {
-      isHoveringRef.current = foundHoverable;
-      setIsHovering(foundHoverable);
+    if (hovering !== isHoveringRef.current) {
+      isHoveringRef.current = hovering;
+      setIsHovering(hovering);
+    }
+    if (foundHoverable !== hoverVariant) {
+      setHoverVariant(foundHoverable);
     }
   };
 
@@ -146,7 +158,10 @@ export default function Cursor() {
   const visualHeight = isHovering ? 48 : cursorSize;
 
   return (
-    <div className={styles.cursorContainer}>
+    <div
+      className={styles.cursorContainer}
+      style={{ mixBlendMode: isHovering ? "normal" : "difference" }}
+    >
       <motion.div
         style={{
           left: smoothMouse.x,
@@ -154,15 +169,17 @@ export default function Cursor() {
           transform: "translate(-50%, -50%)",
 
           borderRadius: isHovering ? 999 : "50%",
+          backgroundColor: isHovering
+            ? hoverVariant === "light"
+              ? "#d9d9d6"
+              : "#262629"
+            : "#ffffff",
           pointerEvents: "none",
 
-          mixBlendMode: "difference",
         }}
         animate={{
           width: visualWidth,
           height: visualHeight,
-
-          backgroundColor: "#ffffff",
         }}
         transition={{ type: "spring", stiffness: 1000, damping: 30 }}
         className={`${styles.cursor} ${isVisible ? styles.visible : styles.hidden}`}
@@ -174,7 +191,12 @@ export default function Cursor() {
             left: "50%",
             top: "50%",
             transform: "translate(-50%, -50%)",
-            color: "#ffffff",
+            color:
+              hoverVariant === "dark"
+                ? "#d9d9d6"
+                : hoverVariant === "light"
+                  ? "#262629"
+                  : "#ffffff",
             fontSize: 14,
             fontWeight: 500,
             opacity: isHovering ? 1 : 0,
@@ -183,7 +205,6 @@ export default function Cursor() {
             pointerEvents: "none",
             userSelect: "none",
             letterSpacing: 0.2,
-            mixBlendMode: "difference",
           }}
         >
           View
