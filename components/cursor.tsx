@@ -14,11 +14,13 @@ interface MouseMoveEvent {
 export default function Cursor() {
   const [isPressed, setIsPressed] = useState<boolean>(false);
   const [isHovering, setIsHovering] = useState<boolean>(false);
-  const [hoverVariant, setHoverVariant] = useState<"dark" | "light" | null>(null);
+  const [hoverVariant, setHoverVariant] = useState<"dark" | "light" | null>(
+    null,
+  );
   const isHoveringRef = useRef<boolean>(false);
   const pointerRef = useRef({ x: 0, y: 0 });
   const cursor = useRef<HTMLDivElement>(null);
-  const cursorSize = isPressed ? 21 : 15;
+  const cursorSize = isPressed ? 10 : 15;
   const [isVisible, setIsVisible] = useState(false);
 
   const mouse: { x: MotionValue<number>; y: MotionValue<number> } = {
@@ -48,8 +50,10 @@ export default function Cursor() {
   const checkHoverable = (target: EventTarget | null) => {
     let el = target as HTMLElement | null;
     while (el && el !== document.documentElement) {
-      if (el.classList && el.classList.contains("hoverable-dark")) return "dark";
-      if (el.classList && el.classList.contains("hoverable-light")) return "light";
+      if (el.classList && el.classList.contains("hoverable-dark"))
+        return "dark";
+      if (el.classList && el.classList.contains("hoverable-light"))
+        return "light";
       el = el.parentElement;
     }
     return null;
@@ -175,7 +179,6 @@ export default function Cursor() {
               : "#262629"
             : "#ffffff",
           pointerEvents: "none",
-
         }}
         animate={{
           width: visualWidth,

@@ -7,6 +7,7 @@ import {
   useScroll,
   useTransform,
 } from "motion/react";
+import Link from "next/dist/client/link";
 
 export function HeroSection() {
   const prefersReducedMotion = useReducedMotion();
@@ -62,15 +63,35 @@ export function HeroSection() {
         </motion.div>
       </div>
       <motion.div
-        className="flex items-center justify-center"
+        className="absolute bottom-12 left-0 right-0 flex items-center justify-center"
         style={prefersReducedMotion ? undefined : { y: titleY }}
       >
+        <Link href="https://github.com/codingboyblah" className="cursor-pointer">
         <p
-          className="font-mono font-extrabold text-sm md:text-base lg:text-lg tracking-[0.3em] uppercase text-[#d9d9d6] my-0 "
+          className="font-mono font-extrabold text-base md:text-lg lg:text-xl tracking-[0.3em] uppercase text-[#808080] my-0  cursor-pointer hover:text-[#d9d9d6] transition-colors duration-300"
           style={{ mixBlendMode: "difference" }}
         >
-          {"DEV · DESIGN · CHAOS"}
+          {"github · "}
         </p>
+
+        </Link>
+
+        <Link href="https://x.com/codingboyblah" className="cursor-pointer">
+         <p
+          className="font-mono font-extrabold text-base md:text-lg lg:text-xl tracking-[0.3em] uppercase text-[#808080] my-0  cursor-pointer hover:text-[#d9d9d6] transition-colors duration-300 "
+          style={{ mixBlendMode: "difference" }}
+        >
+          {"twitter · "}
+        </p>
+        </Link>
+        <Link href="mailto:hi@boyblah.dev" className="cursor-pointer">
+         <p
+          className="font-mono font-extrabold text-base md:text-lg lg:text-xl tracking-[0.3em] uppercase text-[#808080] my-0  cursor-pointer hover:text-[#d9d9d6] transition-colors duration-300"
+          style={{ mixBlendMode: "difference" }}
+        >
+          {"mail"}
+        </p>
+        </Link>
       </motion.div>
     </section>
   );

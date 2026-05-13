@@ -64,10 +64,7 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-.hoverable-dark,
-.hoverable-light {
-    cursor: none;
-}
+
 
 @media (pointer: coarse), (hover: none) {
     .cursor,

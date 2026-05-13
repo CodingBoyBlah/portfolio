@@ -28,7 +28,7 @@ export default function PortfolioPage() {
 
       <ProjectsSection />
 
-      <motion.div {...sectionEnter}>
+      <motion.div>
         <TestimonialsSection />
       </motion.div>
 
@@ -54,6 +54,7 @@ export default function PortfolioPage() {
         exponential={false}
         opacity={1}
       />
+
       <Cursor />
     </main>
   );
