@@ -71,7 +71,7 @@ export function HeroSection() {
           className="font-mono font-extrabold text-base md:text-lg lg:text-xl tracking-[0.3em] uppercase text-[#808080] my-0  cursor-pointer hover:text-[#d9d9d6] transition-colors duration-300"
           style={{ mixBlendMode: "difference" }}
         >
-          {"github · "}
+          {"github·"}
         </p>
 
         </Link>
@@ -81,7 +81,7 @@ export function HeroSection() {
           className="font-mono font-extrabold text-base md:text-lg lg:text-xl tracking-[0.3em] uppercase text-[#808080] my-0  cursor-pointer hover:text-[#d9d9d6] transition-colors duration-300 "
           style={{ mixBlendMode: "difference" }}
         >
-          {"twitter · "}
+          {"twitter·"}
         </p>
         </Link>
         <Link href="mailto:hi@boyblah.dev" className="cursor-pointer">
