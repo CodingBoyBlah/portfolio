@@ -13,7 +13,7 @@ export function HeroSection() {
   const prefersReducedMotion = useReducedMotion();
   const { scrollY } = useScroll();
   const patternY = useTransform(scrollY, [0, 800], [0, 80]);
-  const titleY = useTransform(scrollY, [0, 800], [0, -40]);
+  const titleY = useTransform(scrollY, [0, 800], [0, 0]);
 
   return (
     <section className="relative h-full overflow-hidden bg-[#262629]">
