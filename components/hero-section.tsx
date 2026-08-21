@@ -8,6 +8,7 @@ import {
   useTransform,
 } from "motion/react";
 import Link from "next/dist/client/link";
+import { BadAppleEgg } from "@/components/bad-apple-egg";
 
 export function HeroSection() {
   const prefersReducedMotion = useReducedMotion();
@@ -22,19 +23,21 @@ export function HeroSection() {
         className="absolute inset-0 scale-90 flex items-center justify-center pointer-events-none"
         style={prefersReducedMotion ? undefined : { y: patternY }}
       >
-        <Image
-          src="/diagonal-pattern.svg"
-          alt=""
-          width={1642}
-          height={870}
-          className="w-full h-full object-contain"
-          priority
-        />
+        <BadAppleEgg>
+          <Image
+            src="/diagonal-pattern.svg"
+            alt=""
+            width={1642}
+            height={870}
+            className="w-full h-full object-contain"
+            priority
+          />
+        </BadAppleEgg>
       </motion.div>
 
       <div className="relative flex min-h-screen flex-col items-center justify-center px-4">
         <motion.div
-          className="w-full max-w-[1100px]  scale-65"
+          className="w-full max-w-[260px] xs:max-w-[280px] sm:max-w-[380px] md:max-w-[1100px] md:scale-65 flex items-center justify-center"
           style={{ mixBlendMode: "difference" }}
           initial={
             prefersReducedMotion
@@ -57,40 +60,40 @@ export function HeroSection() {
             alt="CODINGBOYBLAH"
             width={1189}
             height={225}
-            className="w-full h-auto"
+            className="w-full h-auto object-contain"
             priority
           />
         </motion.div>
       </div>
       <motion.div
-        className="absolute bottom-12 left-0 right-0 flex items-center justify-center"
+        className="absolute bottom-6 md:bottom-12 left-0 right-0 flex flex-wrap items-center justify-center px-2 gap-1 md:gap-0"
         style={prefersReducedMotion ? undefined : { y: titleY }}
       >
-        <Link href="https://github.com/codingboyblah" className="cursor-pointer">
-        <p
-          className="font-mono font-extrabold text-base md:text-lg lg:text-xl tracking-[0.3em] uppercase text-[#808080] my-0  cursor-pointer hover:text-[#d9d9d6] transition-colors duration-300"
-          style={{ mixBlendMode: "difference" }}
-        >
-          {"github·"}
-        </p>
-
+        <Link href="https://github.com/codingboyblah" className="cursor-pointer min-h-[44px] flex items-center px-2">
+          <p
+            className="font-mono font-extrabold text-sm sm:text-base md:text-lg lg:text-xl tracking-[0.2em] md:tracking-[0.3em] uppercase text-[#808080] my-0 cursor-pointer hover:text-[#d9d9d6] transition-colors duration-300"
+            style={{ mixBlendMode: "difference" }}
+          >
+            {"github·"}
+          </p>
         </Link>
 
-        <Link href="https://x.com/codingboyblah" className="cursor-pointer">
-         <p
-          className="font-mono font-extrabold text-base md:text-lg lg:text-xl tracking-[0.3em] uppercase text-[#808080] my-0  cursor-pointer hover:text-[#d9d9d6] transition-colors duration-300 "
-          style={{ mixBlendMode: "difference" }}
-        >
-          {"twitter·"}
-        </p>
+        <Link href="https://x.com/codingboyblah" className="cursor-pointer min-h-[44px] flex items-center px-2">
+          <p
+            className="font-mono font-extrabold text-sm sm:text-base md:text-lg lg:text-xl tracking-[0.2em] md:tracking-[0.3em] uppercase text-[#808080] my-0 cursor-pointer hover:text-[#d9d9d6] transition-colors duration-300"
+            style={{ mixBlendMode: "difference" }}
+          >
+            {"twitter·"}
+          </p>
         </Link>
-        <Link href="mailto:hi@boyblah.dev" className="cursor-pointer">
-         <p
-          className="font-mono font-extrabold text-base md:text-lg lg:text-xl tracking-[0.3em] uppercase text-[#808080] my-0  cursor-pointer hover:text-[#d9d9d6] transition-colors duration-300"
-          style={{ mixBlendMode: "difference" }}
-        >
-          {"mail"}
-        </p>
+
+        <Link href="mailto:hi@boyblah.dev" className="cursor-pointer min-h-[44px] flex items-center px-2">
+          <p
+            className="font-mono font-extrabold text-sm sm:text-base md:text-lg lg:text-xl tracking-[0.2em] md:tracking-[0.3em] uppercase text-[#808080] my-0 cursor-pointer hover:text-[#d9d9d6] transition-colors duration-300"
+            style={{ mixBlendMode: "difference" }}
+          >
+            {"mail"}
+          </p>
         </Link>
       </motion.div>
     </section>

@@ -40,9 +40,7 @@ export default function PortfolioPage() {
         <BlogsSection />
       </motion.div>
 
-      {/*<motion.div {...sectionEnter}>
-        <ContactSection />
-      </motion.div> */}
+    
 
       <GradualBlur
         target="page"

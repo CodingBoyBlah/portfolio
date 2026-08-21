@@ -144,11 +144,15 @@
         color: #d9d9d6;
         animation-name: blurIn;
         animation-duration: 2s;
+        overflow-x: hidden;
+        max-width: 100vw;
     }
 
     html {
         scroll-behavior: auto;
         background-color: #262629;
+        overflow-x: hidden;
+        max-width: 100vw;
     }
 }
 

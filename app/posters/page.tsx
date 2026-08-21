@@ -36,20 +36,20 @@ const posters = [
 
 export default function PostersPage() {
   return (
-    <div className="min-h-screen pt-5 px-4 md:px-8 lg:px-16">
+    <div className="min-h-screen py-8 px-4 sm:px-6 md:pt-5 md:px-8 lg:px-16">
       <div className="max-w-7xl mx-auto">
-        <div className="flex justify-center mb-20">
+        <div className="flex justify-center mb-8 md:mb-20">
           <Image
             src="/posters.svg"
             alt="POSTERS"
             width={400}
             height={113}
-            className="w-full max-w-[400px] h-auto"
+            className="w-full max-w-[280px] sm:max-w-[340px] md:max-w-[400px] h-auto"
             style={{ mixBlendMode: "difference" }}
           />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-8">
           {posters.map((poster, index) => (
             <div
               key={index}
@@ -64,7 +64,7 @@ export default function PostersPage() {
                 src={poster.image}
                 alt={poster.title}
                 fill
-                sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
+                sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
                 style={{ objectFit: "cover" }}
               />
             </div>

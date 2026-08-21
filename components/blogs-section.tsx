@@ -33,12 +33,12 @@ export function BlogsSection() {
   return (
     <section
       ref={sectionRef}
-      className="min-h-screen pt-20 px-4 md:px-8 lg:px-16"
+      className="min-h-screen py-12 px-4 sm:px-6 md:pt-20 md:px-8 lg:px-16"
       style={{ backgroundColor: "#262629" }}
     >
       <div className="max-w-7xl mx-auto">
         <motion.div
-          className="flex justify-center mb-8"
+          className="flex justify-center mb-6 md:mb-8"
           style={
             prefersReducedMotion
               ? { mixBlendMode: "difference" }
@@ -50,25 +50,25 @@ export function BlogsSection() {
             alt="BLOGS"
             width={200}
             height={113}
-            className="w-full max-w-[243px] h-auto"
+            className="w-full max-w-[180px] sm:max-w-[210px] md:max-w-[243px] h-auto"
             style={{ mixBlendMode: "normal" }}
           />
         </motion.div>
 
         <div
-          className="mx-auto mb-14 max-w-2xl border border-[#808080] px-4 py-3 text-center font-mono text-xs uppercase tracking-[0.18em] md:text-sm"
+          className="mx-auto mb-8 md:mb-14 max-w-2xl border border-[#808080] px-3 py-2.5 sm:px-4 sm:py-3 text-center font-mono text-[10px] sm:text-xs uppercase tracking-[0.14em] sm:tracking-[0.18em] md:text-sm"
           style={{ color: "#d9d9d6" }}
         >
           notes on shipping, experiments, and dev chaos
         </div>
 
         <motion.div
-          className="grid grid-cols-1 gap-y-8 pb-20"
+          className="grid grid-cols-1 gap-y-6 md:gap-y-8 pb-12 md:pb-20"
           style={prefersReducedMotion ? undefined : { y: cardsY }}
         >
           {blogs.length === 0 ? (
-            <p className="font-mono text-center" style={{ color: "#d9d9d6" }}>
-              No blogs yet. Add markdown files to content/blogs/ to get started.
+            <p className="font-mono text-center text-xs sm:text-sm" style={{ color: "#d9d9d6" }}>
+              No blogs yet. Im too busy working on success.
             </p>
           ) : (
             [...blogs].reverse().map((blog, index) => (
@@ -93,28 +93,28 @@ export function BlogsSection() {
                         }
                   }
                 >
-                  <div className="px-8 py-8 md:px-12 md:py-10">
-                    <div className="mb-6 flex items-center justify-between border-b border-[#808080] pb-3">
-                      <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#808080]">
+                  <div className="px-4 py-6 sm:px-6 sm:py-8 md:px-12 md:py-10">
+                    <div className="mb-4 sm:mb-6 flex items-center justify-between border-b border-[#808080] pb-2 sm:pb-3">
+                      <span className="font-mono text-[10px] sm:text-xs uppercase tracking-[0.18em] sm:tracking-[0.2em] text-[#808080]">
                         entry 0{index + 1}
                       </span>
-                      <span className="font-mono text-xs uppercase tracking-[0.16em] text-[#808080]">
+                      <span className="font-mono text-[10px] sm:text-xs uppercase tracking-[0.14em] sm:tracking-[0.16em] text-[#808080]">
                         {blog.date}
                       </span>
                     </div>
 
-                    <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+                    <div className="flex flex-col gap-3 sm:gap-6 md:flex-row md:items-center md:justify-between">
                       <div>
-                        <h3 className="mb-3 font-mono text-3xl font-bold md:text-4xl text-[#d9d9d6]">
+                        <h3 className="mb-2 sm:mb-3 font-mono text-2xl sm:text-3xl font-bold md:text-4xl text-[#d9d9d6]">
                           {blog.title}
                         </h3>
-                        <p className="font-mono text-sm md:text-base text-[#d9d9d6]">
+                        <p className="font-mono text-xs sm:text-sm md:text-base text-[#d9d9d6] leading-relaxed">
                           {blog.excerpt}
                         </p>
                       </div>
                     </div>
 
-                    <div className="mt-8 h-[2px] w-full overflow-hidden bg-[#808080]">
+                    <div className="mt-6 sm:mt-8 h-[2px] w-full overflow-hidden bg-[#808080]">
                       <motion.div
                         className="h-full bg-[#d9d9d6]"
                         initial={prefersReducedMotion ? undefined : { scaleX: 0, transformOrigin: "left" }}

@@ -1,7 +1,6 @@
 "use client";
 
-import Link from "next/link";
-import ScrollReveal from "@/components/ScrollReveal";
+import Link from "next/link"
 import GradualBlur from "@/components/GradualBlur";
 import Cursor from "@/components/cursor";
 
@@ -16,33 +15,33 @@ interface BlogClientPageProps {
 export default function BlogClientPage({ blogData }: BlogClientPageProps) {
   return (
     <main
-      className="min-h-screen py-20 px-4 md:px-8 lg:px-16"
+      className="min-h-screen py-10 px-4 sm:px-6 md:py-20 md:px-8 lg:px-16 overflow-hidden"
       style={{ backgroundColor: "#262629" }}
     >
       <Cursor />
       <article className="max-w-4xl mx-auto page-load">
         <Link
           href="/"
-          className="font-mono text-sm mb-8 inline-block hover:underline"
+          className="font-mono text-xs sm:text-sm mb-6 sm:mb-8 inline-flex items-center min-h-[44px] hover:underline"
           style={{ color: "#d9d9d6" }}
         >
           ← Back to home
         </Link>
 
-        <header className="mb-12">
+        <header className="mb-8 sm:mb-12">
           <h1
-            className="font-mono text-4xl md:text-6xl font-bold mb-4"
+            className="font-mono text-2xl sm:text-4xl md:text-6xl font-bold mb-3 sm:mb-4 leading-tight"
             style={{ color: "#d9d9d6" }}
           >
             {blogData.title}
           </h1>
-          <p className="font-mono text-sm" style={{ color: "#808080" }}>
+          <p className="font-mono text-xs sm:text-sm" style={{ color: "#808080" }}>
             {blogData.date}
           </p>
         </header>
 
         <div
-          className="prose prose-invert max-w-none font-mono"
+          className="prose prose-invert max-w-none font-mono text-xs sm:text-sm md:text-base leading-relaxed"
           style={{ color: "#d9d9d6" }}
           dangerouslySetInnerHTML={{ __html: blogData.htmlContent }}
         />
@@ -88,7 +87,7 @@ export default function BlogClientPage({ blogData }: BlogClientPageProps) {
           color: #d9d9d6;
         }
 
-        . .prose h1,
+        .prose h1,
         .prose h2,
         .prose h3,
         .prose h4,

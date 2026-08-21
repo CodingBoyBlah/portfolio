@@ -20,29 +20,29 @@ export default function VynlPage() {
     <main>
       <Cursor />
       <div className="load-in min-h-screen bg-[#F5F4F1] dark:bg-[#1d1917] text-[#1d1917] dark:text-white relative overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none z-0">
+        <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
           <Image
             src="/vinyl-full-circle.png"
             alt=""
             width={600}
             height={600}
-            className="absolute top-0 left-0 opacity-[0.5] dark:opacity-[0.3] -translate-x-1/2 -translate-y-1/4 invert dark:invert-0"
+            className="absolute top-0 left-0 opacity-[0.5] dark:opacity-[0.3] -translate-x-1/2 -translate-y-1/4 invert dark:invert-0 w-[300px] md:w-[600px] h-auto"
           />
           <Image
             src="/vinyl-full-circle.png"
             alt=""
             width={900}
             height={900}
-            className="absolute bottom-0 right-0 opacity-[0.5] dark:opacity-[0.3] translate-x-1/3 translate-y-1/3 invert dark:invert-0"
+            className="absolute bottom-0 right-0 opacity-[0.5] dark:opacity-[0.3] translate-x-1/3 translate-y-1/3 invert dark:invert-0 w-[450px] md:w-[900px] h-auto"
           />
         </div>
 
         <header className="border-b border-[#CCC8BC] dark:border-white/10 bg-[#E5E3DC] dark:bg-[#2D2926] backdrop-blur-sm animate-slide-down relative z-10">
-          <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-            <div className="flex items-center gap-3">
+          <div className="container mx-auto px-4 py-3 sm:py-4 flex items-center justify-between">
+            <div className="flex items-center gap-2 sm:gap-3">
               <Link
                 href="/"
-                className=" font-extrabold text-lg mr-2 inline-block "
+                className="font-extrabold text-base sm:text-lg mr-1 sm:mr-2 inline-block min-h-[44px] min-w-[44px] flex items-center justify-center"
                 style={{ color: "#756959" }}
               >
                 {"<"}
@@ -52,19 +52,19 @@ export default function VynlPage() {
                 alt="vynl logo"
                 width={60}
                 height={60}
-                className="rounded-full"
+                className="rounded-full w-10 h-10 sm:w-14 sm:h-14"
               />
-              <h1 className="text-2xl font-semibold text-[#1d1917] dark:text-white">
+              <h1 className="text-xl sm:text-2xl font-semibold text-[#1d1917] dark:text-white">
                 vynl
               </h1>
             </div>
           </div>
         </header>
 
-        <main className="container mx-auto px-4 py-12 md:py-20 lg:py-24 relative z-10">
-          <div className="max-w-6xl mx-auto space-y-12">
-            <div className="text-center space-y-6 animate-fade-in">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-normal text-[#1d1917] dark:text-white text-balance leading-tight">
+        <main className="container mx-auto px-4 py-8 sm:py-12 md:py-20 lg:py-24 relative z-10">
+          <div className="max-w-6xl mx-auto space-y-8 md:space-y-12">
+            <div className="text-center space-y-4 sm:space-y-6 animate-fade-in">
+              <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-normal text-[#1d1917] dark:text-white text-balance leading-tight">
                 Your Spotify Stats,
                 <br />
                 <span className="italic font-serif text-[#756959] dark:text-[#AFA895]">
@@ -72,7 +72,7 @@ export default function VynlPage() {
                 </span>
               </h2>
 
-              <p className="text-sm md:text-base text-[#756959] dark:text-[#AFA895] max-w-3xl mx-auto text-pretty leading-relaxed font-serif">
+              <p className="text-xs sm:text-sm md:text-base text-[#756959] dark:text-[#AFA895] max-w-3xl mx-auto text-pretty leading-relaxed font-serif px-2">
                 Experience your music journey with a vintage vinyl aesthetic.
                 Track your listening habits, discover your top artists, and
                 visualize your musical evolution.
@@ -83,10 +83,10 @@ export default function VynlPage() {
                   <Button
                     variant="ghost"
                     size="lg"
-                    className="glass-effect-button bg-[#524841]/20 dark:bg-white/5 border border-[#524841]/20 dark:border-white/20 hover:bg-[#524841]/25 dark:hover:bg-white/25 hover:border-[#524841]/30 dark:hover:border-white/30 text-[#1d1917] dark:text-white font-serif text-base rounded-full transition-all duration-300 flex items-center gap-3 h-auto pr-0 pl-6"
+                    className="glass-effect-button bg-[#524841]/20 dark:bg-white/5 border border-[#524841]/20 dark:border-white/20 hover:bg-[#524841]/25 dark:hover:bg-white/25 hover:border-[#524841]/30 dark:hover:border-white/30 text-[#1d1917] dark:text-white font-serif text-sm sm:text-base rounded-full transition-all duration-300 flex items-center gap-3 h-auto py-0 pr-0 pl-5 sm:pl-6"
                   >
                     Github
-                    <div className="p-5 rounded-full border border-[#524841]/20 dark:border-white/20">
+                    <div className="p-3.5 sm:p-5 rounded-full border border-[#524841]/20 dark:border-white/20 flex items-center justify-center">
                       <ArrowDown className="h-4 w-4" />
                     </div>
                   </Button>
@@ -94,9 +94,9 @@ export default function VynlPage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 mt-16 animate-slide-up stagger-2">
-              <Card className="glass-effect bg-[#524841]/15 dark:bg-white/5 border-[#524841]/10 dark:border-white/10 p-5 space-y-3 hover:bg-[#524841]/20 dark:hover:bg-white/20 transition-all duration-300 rounded-2xl">
-                <h3 className="text-lg font-serif italic text-[#1d1917] dark:text-white">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 mt-8 md:mt-16 animate-slide-up stagger-2">
+              <Card className="glass-effect bg-[#524841]/15 dark:bg-white/5 border-[#524841]/10 dark:border-white/10 p-4 sm:p-5 space-y-2 sm:space-y-3 hover:bg-[#524841]/20 dark:hover:bg-white/20 transition-all duration-300 rounded-2xl">
+                <h3 className="text-base sm:text-lg font-serif italic text-[#1d1917] dark:text-white">
                   Top Tracks
                 </h3>
                 <p className="text-xs text-[#756959] dark:text-[#AFA895] leading-relaxed font-serif">
@@ -106,8 +106,8 @@ export default function VynlPage() {
                 </p>
               </Card>
 
-              <Card className="glass-effect bg-[#524841]/15 dark:bg-white/5 border-[#524841]/10 dark:border-white/10 p-5 space-y-3 hover:bg-[#524841]/20 dark:hover:bg-white/20 transition-all duration-300 rounded-2xl">
-                <h3 className="text-lg font-serif italic text-[#1d1917] dark:text-white">
+              <Card className="glass-effect bg-[#524841]/15 dark:bg-white/5 border-[#524841]/10 dark:border-white/10 p-4 sm:p-5 space-y-2 sm:space-y-3 hover:bg-[#524841]/20 dark:hover:bg-white/20 transition-all duration-300 rounded-2xl">
+                <h3 className="text-base sm:text-lg font-serif italic text-[#1d1917] dark:text-white">
                   Top Artists
                 </h3>
                 <p className="text-xs text-[#756959] dark:text-[#AFA895] leading-relaxed font-serif">
@@ -117,8 +117,8 @@ export default function VynlPage() {
                 </p>
               </Card>
 
-              <Card className="glass-effect bg-[#524841]/15 dark:bg-white/5 border-[#524841]/10 dark:border-white/10 p-5 space-y-3 hover:bg-[#524841]/20 dark:hover:bg-white/20 transition-all duration-300 rounded-2xl">
-                <h3 className="text-lg font-serif italic text-[#1d1917] dark:text-white">
+              <Card className="glass-effect bg-[#524841]/15 dark:bg-white/5 border-[#524841]/10 dark:border-white/10 p-4 sm:p-5 space-y-2 sm:space-y-3 hover:bg-[#524841]/20 dark:hover:bg-white/20 transition-all duration-300 rounded-2xl">
+                <h3 className="text-base sm:text-lg font-serif italic text-[#1d1917] dark:text-white">
                   Time Listened
                 </h3>
                 <p className="text-xs text-[#756959] dark:text-[#AFA895] leading-relaxed font-serif">
@@ -128,8 +128,8 @@ export default function VynlPage() {
                 </p>
               </Card>
 
-              <Card className="glass-effect bg-[#524841]/15 dark:bg-white/5 border-[#524841]/10 dark:border-white/10 p-5 space-y-3 hover:bg-[#524841]/20 dark:hover:bg-white/20 transition-all duration-300 rounded-2xl">
-                <h3 className="text-lg font-serif italic text-[#1d1917] dark:text-white">
+              <Card className="glass-effect bg-[#524841]/15 dark:bg-white/5 border-[#524841]/10 dark:border-white/10 p-4 sm:p-5 space-y-2 sm:space-y-3 hover:bg-[#524841]/20 dark:hover:bg-white/20 transition-all duration-300 rounded-2xl">
+                <h3 className="text-base sm:text-lg font-serif italic text-[#1d1917] dark:text-white">
                   Top Albums
                 </h3>
                 <p className="text-xs text-[#756959] dark:text-[#AFA895] leading-relaxed font-serif">
@@ -139,8 +139,8 @@ export default function VynlPage() {
                 </p>
               </Card>
 
-              <Card className="glass-effect bg-[#524841]/15 dark:bg-white/5 border-[#524841]/10 dark:border-white/10 p-5 space-y-3 hover:bg-[#524841]/20 dark:hover:bg-white/20 transition-all duration-300 rounded-2xl">
-                <h3 className="text-lg font-serif italic text-[#1d1917] dark:text-white">
+              <Card className="glass-effect bg-[#524841]/15 dark:bg-white/5 border-[#524841]/10 dark:border-white/10 p-4 sm:p-5 space-y-2 sm:space-y-3 hover:bg-[#524841]/20 dark:hover:bg-white/20 transition-all duration-300 rounded-2xl">
+                <h3 className="text-base sm:text-lg font-serif italic text-[#1d1917] dark:text-white">
                   Today's Refresh
                 </h3>
                 <p className="text-xs text-[#756959] dark:text-[#AFA895] leading-relaxed font-serif">
