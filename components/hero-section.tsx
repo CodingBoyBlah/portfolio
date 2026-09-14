@@ -69,7 +69,10 @@ export function HeroSection() {
         className="absolute bottom-6 md:bottom-12 left-0 right-0 flex flex-wrap items-center justify-center px-2 gap-1 md:gap-0"
         style={prefersReducedMotion ? undefined : { y: titleY }}
       >
-        <Link href="https://github.com/codingboyblah" className="cursor-pointer min-h-[44px] flex items-center px-2">
+        <Link
+          href="https://github.com/codingboyblah"
+          className="cursor-pointer min-h-[44px] flex items-center px-2"
+        >
           <p
             className="font-mono font-extrabold text-sm sm:text-base md:text-lg lg:text-xl tracking-[0.2em] md:tracking-[0.3em] uppercase text-[#808080] my-0 cursor-pointer hover:text-[#d9d9d6] transition-colors duration-300"
             style={{ mixBlendMode: "difference" }}
@@ -78,7 +81,10 @@ export function HeroSection() {
           </p>
         </Link>
 
-        <Link href="https://x.com/codingboyblah" className="cursor-pointer min-h-[44px] flex items-center px-2">
+        <Link
+          href="https://x.com/boyblahdev"
+          className="cursor-pointer min-h-[44px] flex items-center px-2"
+        >
           <p
             className="font-mono font-extrabold text-sm sm:text-base md:text-lg lg:text-xl tracking-[0.2em] md:tracking-[0.3em] uppercase text-[#808080] my-0 cursor-pointer hover:text-[#d9d9d6] transition-colors duration-300"
             style={{ mixBlendMode: "difference" }}
@@ -87,7 +93,10 @@ export function HeroSection() {
           </p>
         </Link>
 
-        <Link href="mailto:hi@boyblah.dev" className="cursor-pointer min-h-[44px] flex items-center px-2">
+        <Link
+          href="mailto:hi@boyblah.dev"
+          className="cursor-pointer min-h-[44px] flex items-center px-2"
+        >
           <p
             className="font-mono font-extrabold text-sm sm:text-base md:text-lg lg:text-xl tracking-[0.2em] md:tracking-[0.3em] uppercase text-[#808080] my-0 cursor-pointer hover:text-[#d9d9d6] transition-colors duration-300"
             style={{ mixBlendMode: "difference" }}

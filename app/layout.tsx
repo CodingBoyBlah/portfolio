@@ -97,7 +97,7 @@ export default function RootLayout({
           </Link>
 
           <Link
-            href="https://x.com/CodingBoyBlah"
+            href="https://x.com/boyblahdev"
             className="hover:scale-110 transition-all duration-300"
           >
             <svg
