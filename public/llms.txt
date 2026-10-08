@@ -1,0 +1,21 @@
+# CodingBoyBlah
+
+> CodingBoyBlah (Anshuman) is a full-stack developer and creative technologist based in India. He builds open-source applications, experimental interfaces, and web tools.
+
+## About
+- Name: Anshuman (CodingBoyBlah)
+- Role: Full-Stack Developer & Creative Technologist
+- Website: https://boyblah.dev
+- GitHub: https://github.com/codingboyblah
+- Twitter / X: https://x.com/boyblahdev
+- Itch.io: https://codingboyblah.itch.io
+
+## Core Projects
+- **Musique**: Fast, lightweight open-source Spotify desktop client. (https://musique.boyblah.dev/)
+- **vynl**: Spotify analytics web application tracking listening habits and music trends over time. (https://boyblah.dev/vynl)
+- **Posters**: Graphic design and visual typography poster collection. (https://boyblah.dev/posters)
+- **Circle Pong**: Experimental circular paddle game published on itch.io. (https://codingboyblah.itch.io/circle-pong)
+
+## Writing & Blog Posts
+- [What Building vynl Taught Me](https://boyblah.dev/blog/vynl): Reflection on project planning, Spotify API limits, and shipping open-source software.
+- [Who am I?](https://boyblah.dev/blog/whoami): Personal background, evolution from Python to Godot to JavaScript, and developer philosophy.

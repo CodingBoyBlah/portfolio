@@ -3,14 +3,71 @@ import path from "path";
 import matter from "gray-matter";
 import { marked } from "marked";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import BlogClientPage from "./BlogClientPage";
 
 interface BlogPageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export const dynamic = "force-static";
 export const dynamicParams = false;
+
+export async function generateMetadata({
+  params,
+}: BlogPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const blogsDirectory = path.join(process.cwd(), "content/blogs");
+  const filePath = path.join(blogsDirectory, `${slug}.md`);
+
+  if (!fs.existsSync(filePath)) {
+    return {
+      title: "Blog Post Not Found",
+    };
+  }
+
+  const fileContents = fs.readFileSync(filePath, "utf8");
+  const { data, content } = matter(fileContents);
+  const title = data.title || slug;
+  const cleanExcerpt = content
+    .replace(/!\[.*?\]\(.*?\)/g, "")
+    .replace(/[#*`_\[\]()>-]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+  const description =
+    data.excerpt || cleanExcerpt.slice(0, 155) + "...";
+  const canonicalUrl = `https://boyblah.dev/blog/${slug}`;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      title: `${title} | CodingBoyBlah`,
+      description,
+      type: "article",
+      publishedTime: data.date,
+      url: canonicalUrl,
+      images: [
+        {
+          url: "/og-image.png",
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${title} | CodingBoyBlah`,
+      description,
+      creator: "@boyblahdev",
+      images: ["/twitter-image.png"],
+    },
+  };
+}
 
 export async function generateStaticParams() {
   try {
@@ -29,25 +86,17 @@ export async function generateStaticParams() {
       }
     }
 
-    console.log("  Blogs directory:", blogsDirectory);
-    console.log("  Directory exists:", fs.existsSync(blogsDirectory));
-
     if (!fs.existsSync(blogsDirectory)) {
-      console.log("  No blogs directory found, returning empty params");
       return [];
     }
 
     const filenames = fs.readdirSync(blogsDirectory);
-    console.log("Found files:", filenames);
-
     const markdownFiles = filenames.filter((name) => name.endsWith(".md"));
-    console.log("Markdown files:", markdownFiles);
 
     const params = markdownFiles.map((filename) => ({
       slug: filename.replace(/\.md$/, ""),
     }));
 
-    console.log("Generated static params:", params);
     return params;
   } catch (error) {
     console.error("Error generating static params:", error);
@@ -57,16 +106,11 @@ export async function generateStaticParams() {
 
 export default async function BlogPage({ params }: BlogPageProps) {
   const { slug } = await params;
-  console.log("  Loading blog with slug:", slug);
 
   const blogsDirectory = path.join(process.cwd(), "content/blogs");
   const filePath = path.join(blogsDirectory, `${slug}.md`);
 
-  console.log("  Looking for blog at:", filePath);
-  console.log("  File exists:", fs.existsSync(filePath));
-
   if (!fs.existsSync(filePath)) {
-    console.log("  Blog not found, returning 404");
     notFound();
   }
 
@@ -116,5 +160,37 @@ export default async function BlogPage({ params }: BlogPageProps) {
     htmlContent,
   };
 
-  return <BlogClientPage blogData={blogData} />;
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: blogData.title,
+    description: data.excerpt || blogData.title,
+    datePublished: blogData.date,
+    dateModified: blogData.date,
+    url: `https://boyblah.dev/blog/${slug}`,
+    author: {
+      "@type": "Person",
+      name: "CodingBoyBlah",
+      url: "https://boyblah.dev",
+    },
+    publisher: {
+      "@type": "Person",
+      name: "CodingBoyBlah",
+      url: "https://boyblah.dev",
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `https://boyblah.dev/blog/${slug}`,
+    },
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <BlogClientPage blogData={blogData} />
+    </>
+  );
 }

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import poster1 from "../../content/posters/poster1.png";
 import poster2 from "../../content/posters/poster2.png";
@@ -15,6 +16,39 @@ import poster13 from "../../content/posters/poster13.png";
 import poster14 from "../../content/posters/poster14.png";
 import poster15 from "../../content/posters/poster15.png";
 import Cursor from "@/components/cursor";
+
+export const metadata: Metadata = {
+  title: "Posters & Graphic Design",
+  description:
+    "A curated collection of typography, Swiss-style, and graphic design posters by CodingBoyBlah.",
+  alternates: {
+    canonical: "/posters",
+  },
+  openGraph: {
+    title: "Posters & Graphic Design | CodingBoyBlah",
+    description:
+      "A curated collection of typography, Swiss-style, and graphic design posters by CodingBoyBlah.",
+    url: "https://boyblah.dev/posters",
+    siteName: "CodingBoyBlah",
+    type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "CodingBoyBlah Posters",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Posters & Graphic Design | CodingBoyBlah",
+    description:
+      "A curated collection of typography, Swiss-style, and graphic design posters by CodingBoyBlah.",
+    creator: "@boyblahdev",
+    images: ["/twitter-image.png"],
+  },
+};
 
 const posters = [
   { title: "Poster 1", image: poster1 },
@@ -38,7 +72,7 @@ export default function PostersPage() {
   return (
     <div className="min-h-screen py-8 px-4 sm:px-6 md:pt-5 md:px-8 lg:px-16">
       <div className="max-w-7xl mx-auto">
-        <div className="flex justify-center mb-8 md:mb-20">
+        <header className="flex justify-center mb-8 md:mb-20">
           <Image
             src="/posters.svg"
             alt="POSTERS"
@@ -47,7 +81,8 @@ export default function PostersPage() {
             className="w-full max-w-[280px] sm:max-w-[340px] md:max-w-[400px] h-auto"
             style={{ mixBlendMode: "difference" }}
           />
-        </div>
+          <h1 className="sr-only">CodingBoyBlah - Graphic Design Posters</h1>
+        </header>
 
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-8">
           {posters.map((poster, index) => (
@@ -62,7 +97,7 @@ export default function PostersPage() {
             >
               <Image
                 src={poster.image}
-                alt={poster.title}
+                alt={`${poster.title} - Visual Graphic Design by CodingBoyBlah`}
                 fill
                 sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
                 style={{ objectFit: "cover" }}
