@@ -44,10 +44,12 @@ export default function LockInPage() {
         </h1>
         <div className="space-y-1 flex flex-col items-start">
           <Link
-            href="/vynl"
+            href="https://musique.boyblah.dev/"
+            target="_blank"
+            rel="noreferrer"
             className="text-lg sm:text-xl md:text-2xl group relative inline-block py-1 min-h-[44px] flex items-center"
           >
-            <span className="relative z-10">-- vynl</span>
+            <span className="relative z-10">-- Musique</span>
             <span
               className="absolute left-0 bottom-0 w-full h-[2px] bg-current scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left z-0"
               aria-hidden="true"

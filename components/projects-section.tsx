@@ -7,9 +7,9 @@ import { motion, useReducedMotion, useScroll, useTransform } from "motion/react"
 
 const projects = [
   {
-    title: "vynl",
-    description: "Music analytics & discovery project",
-    url: "/vynl",
+    title: "Musique",
+    description: "Fast, open-source Spotify desktop client",
+    url: "https://musique.boyblah.dev/",
   },
   {
     title: "Posters",
